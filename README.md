@@ -41,7 +41,7 @@ uv sync
 
 Modify the `.env.example` file with your API keys:
 
-- `OPENAI_API_KEY`: find it [on OpenAI Platform](https://platform.openai.com/api-keys)
+- `GOOGLE_API_KEY`: find it [on Google AI Studio](https://aistudio.google.com/app/apikey)
 - `ELEVENLABS_API_KEY`: find it [on ElevenLabs Settings](https://elevenlabs.io/app/settings/api-keys)
 - `LLAMACLOUD_API_KEY`: find it [on LlamaCloud Dashboard](https://cloud.llamaindex.ai/)
 

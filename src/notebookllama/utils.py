@@ -10,7 +10,7 @@ from llama_cloud_services import LlamaExtract, LlamaParse
 from llama_cloud_services.extract import SourceText
 from llama_cloud.client import AsyncLlamaCloud
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
-from llama_index.llms.openai import OpenAIResponses
+from llama_index.llms.gemini import Gemini
 from typing import List, Tuple, Union
 from typing_extensions import Self
 from pyvis.network import Network
@@ -79,9 +79,9 @@ if (
     os.getenv("LLAMACLOUD_API_KEY", None)
     and os.getenv("EXTRACT_AGENT_ID", None)
     and os.getenv("LLAMACLOUD_PIPELINE_ID", None)
-    and os.getenv("OPENAI_API_KEY", None)
+    and os.getenv("GOOGLE_API_KEY", None)
 ):
-    LLM = OpenAIResponses(model="gpt-4.1", api_key=os.getenv("OPENAI_API_KEY"))
+    LLM = Gemini(model="models/gemini-1.0-pro", api_key=os.getenv("GOOGLE_API_KEY"))
     CLIENT = AsyncLlamaCloud(token=os.getenv("LLAMACLOUD_API_KEY"))
     EXTRACT_AGENT = LlamaExtract(api_key=os.getenv("LLAMACLOUD_API_KEY")).get_agent(
         id=os.getenv("EXTRACT_AGENT_ID")

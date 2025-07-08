@@ -10,7 +10,7 @@ from typing_extensions import Self
 from typing import List, Literal
 from pydantic import BaseModel, ConfigDict, model_validator, Field
 from llama_index.core.llms import ChatMessage
-from llama_index.llms.openai import OpenAIResponses
+from llama_index.llms.gemini import Gemini
 
 
 class ConversationTurn(BaseModel):
@@ -135,9 +135,9 @@ class PodcastGenerator(BaseModel):
 
 load_dotenv()
 
-if os.getenv("ELEVENLABS_API_KEY", None) and os.getenv("OPENAI_API_KEY", None):
-    SLLM = OpenAIResponses(
-        model="gpt-4.1", api_key=os.getenv("OPENAI_API_KEY")
+if os.getenv("ELEVENLABS_API_KEY", None) and os.getenv("GOOGLE_API_KEY", None):
+    SLLM = Gemini(
+        model="models/gemini-1.0-pro", api_key=os.getenv("GOOGLE_API_KEY")
     ).as_structured_llm(MultiTurnConversation)
     EL_CLIENT = AsyncElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
     PODCAST_GEN = PodcastGenerator(llm=SLLM, client=EL_CLIENT)
