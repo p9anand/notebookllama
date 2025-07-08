@@ -2,27 +2,27 @@ import os
 from dotenv import load_dotenv
 
 from llama_cloud import (
-    PipelineCreateEmbeddingConfig_OpenaiEmbedding,
+    PipelineCreateEmbeddingConfig_GeminiEmbedding,
     PipelineTransformConfig_Advanced,
     AdvancedModeTransformConfigChunkingConfig_Sentence,
     AdvancedModeTransformConfigSegmentationConfig_Page,
     PipelineCreate,
 )
 from llama_cloud.client import LlamaCloud
-from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.embeddings.google import GeminiEmbedding
 
 
 def main():
     load_dotenv()
 
-    embed_model = OpenAIEmbedding(
-        model="text-embedding-3-small", api_key=os.getenv("OPENAI_API_KEY")
+    embed_model = GeminiEmbedding(
+        model_name="models/embedding-001", api_key=os.getenv("GOOGLE_API_KEY")
     )
 
     client = LlamaCloud(token=os.getenv("LLAMACLOUD_API_KEY"))
 
-    embedding_config = PipelineCreateEmbeddingConfig_OpenaiEmbedding(
-        type="OPENAI_EMBEDDING",
+    embedding_config = PipelineCreateEmbeddingConfig_GeminiEmbedding(
+        type="GEMINI_EMBEDDING",
         component=embed_model,
     )
 
